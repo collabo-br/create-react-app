@@ -79,11 +79,11 @@ module.exports = function(api, opts, env) {
         // Latest stable ECMAScript features
         require('@babel/preset-env').default,
         {
-          // Allow importing @babel/polyfill in entrypoint and use browserlist to select polyfills
+          // Allow importing core-js in entrypoint and use browserlist to select polyfills
           useBuiltIns: 'entry',
           // Set the corejs version we are using to avoid warnings in console
           // This will need to change once we upgrade to corejs@3
-          corejs: 2,
+          corejs: 3,
           // Do not transform modules to CJS
           modules: false,
           // Exclude transforms that make all code slower
@@ -170,6 +170,10 @@ module.exports = function(api, opts, env) {
         {
           corejs: false,
           helpers: areHelpersEnabled,
+          // By default, babel assumes babel/runtime version 7.0.0-beta.0,
+          // explicitly resolving to match the provided helper functions.
+          // https://github.com/babel/babel/issues/10261
+          version: require('@babel/runtime/package.json').version,
           regenerator: true,
           // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
           // We should turn this on once the lowest version of Node LTS
