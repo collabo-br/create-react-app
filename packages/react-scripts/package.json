@@ -1,5 +1,5 @@
 {
-  "name": "collabo-react-scripts",
+  "name": "@collabo/collabo-react-scripts",
   "version": "3.2.0",
   "description": "Collabo configuration and scripts for Create React App.",
   "repository": {
